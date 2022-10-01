@@ -57,7 +57,7 @@ function getPasswordOptions() {
   // Variable to store boolean regarding the inclusion of lowercase characters
   var hasLowercaseCharacters = confirm(
     'Click OK to confirm including lower cased letters.'
-    
+  );
 
   // Variable to store boolean regarding the inclusion of uppercase characters
   var hasUppercaseCharacters = confirm(
@@ -83,7 +83,6 @@ function generatePassword() {
   var options = getPasswordOptions();
   //Code Your logic Below
   // return "123456789"
-  return options[Math.floor(math.random() * getPasswordOptions.length)
 }
 // Write password to the #password input
 function writePassword() {
