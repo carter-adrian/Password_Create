@@ -41,6 +41,10 @@ function getPasswordOptions() {
     return null;
   }
 
+  if (length > 128) {
+    alert('Password length must be at less than 128 characters');
+    return null;
+  }
   // Conditional statement to check if password length is less than 128 characters long. Prompts end if this evaluates false
 
   // Variable to store boolean regarding the inclusion of special characters
@@ -48,23 +52,28 @@ function getPasswordOptions() {
     'Click OK to confirm including special characters.'
   );
   
- 
 
   // Variable to store boolean regarding the inclusion of numeric characters
   var hasNumeralCharacters = confirm(
     'Click OK to confirm including numbers.'
   );
+  
   // Variable to store boolean regarding the inclusion of lowercase characters
   var hasLowercaseCharacters = confirm(
-    'Click OK to confirm including lower cased letters.'
+    'Click OK to confirm including lowercased letters.'
   );
-
-  // Variable to store boolean regarding the inclusion of uppercase characters
+// Variable to store boolean regarding the inclusion of uppercase characters
   var hasUppercaseCharacters = confirm(
     'Click OK to confirm including uppercased letters.'
   );
-  // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
+ // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
   // Object to store user input
+if (hasSpecialCharacters === false && hasNumeralCharacters === false && hasLowercaseCharacters === false &&
+  hasUppercaseCharacters === false) {
+    alert('You must choose at least one type of character to be included in your password.');
+    return null;
+  };
+
   var passwordOptions = {
     length: length,
     hasSpecialCharacters: hasSpecialCharacters,
@@ -83,6 +92,27 @@ function generatePassword() {
   var options = getPasswordOptions();
   //Code Your logic Below
   // return "123456789"
+var passCharacters = [];
+if (options.hasSpecialCharacters === true) {
+  passCharacters = passCharacters.concat(specialCharacters);
+}; 
+if (options.hasNumeralCharacters === true) {
+  passCharacters = passCharacters.concat(numeralCharacters);
+};
+if (options.hasLowercaseCharacters === true) {
+  passCharacters = passCharacters.concat(lowerCasedCharacters);
+};
+if (options.hasUppercaseCharacters === true) {
+  passCharacters = passCharacters.concat(upperCasedCharacters);
+};
+
+var passwordString = ""
+
+for (let i= 0; i < options.length; i++) {
+  var randElement = getRandom(passCharacters);
+  passwordString += randElement;
+}
+  return passwordString;
 }
 // Write password to the #password input
 function writePassword() {
